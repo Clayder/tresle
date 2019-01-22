@@ -1,0 +1,19 @@
+{
+    "name": "clayder/tresle",
+    "authors": [
+        {
+            "name": "Peter Clayder",
+            "email": "peterclayder@id.uff.br"
+        },
+        {
+            "name": "Fernanda Pires",
+            "email": "fpires@id.uff.br"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tresle\\": "system"
+        }
+    }
+}
