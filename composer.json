@@ -15,5 +15,8 @@
         "psr-4": {
             "Tresle\\": "system"
         }
+    },
+    "scripts": {
+        "server": "php -S localhost:8080"
     }
 }
