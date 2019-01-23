@@ -8,8 +8,8 @@ $router->add('/', function(){
     return "home";
 });
 
-$router->add('/products', function(){
-    return "produtos";
+$router->add('/products/(\d+)', function($params){
+    return "produtos ".$params[1];
 });
 
 echo $router->run();

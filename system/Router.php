@@ -11,13 +11,23 @@ class Router
     private $routes = [];
 
     /**
-     * @param string $pattern
+     * @param string $controller
      * @param $callback funcao anonima
      * @return void
      */
-    public function add(string $pattern, $callback)
+    public function add(string $controller, $callback)
     {
-        $this->routes[$pattern] = $callback;
+        /**
+         * O caracter / eh especial, entao temos que transformar em \/
+         */
+        $controller = str_replace('/', '\/', $controller);
+
+        /**
+         * Monta a expressao regular
+         */
+        $controller = '/^'. $controller .'$/';
+
+        $this->routes[$controller] = $callback;
     }
 
     /**
@@ -25,9 +35,36 @@ class Router
      */
     public function run()
     {
-        $route = $_SERVER['PATH_INFO'] ?? '/';
-        if(array_key_exists($route, $this->routes)){
-            return $this->routes[$route]();
+        $url = $_SERVER['PATH_INFO'] ?? '/';
+
+        /**
+         * $route    -> expressao regular
+         * $callback -> funcao anonima
+         */
+        foreach ($this->routes as $route => $callback){
+
+            /**
+             * Executa a expressao regular separando o controller dos parametros
+             * exemplo: /product/12
+             * $params = array(2) {
+             *               [0]=>
+             *                  string(14) "/products/2121"
+             *               [1]=>
+             *                  string(4) "2121"
+             *           }
+             *
+             */
+            if(preg_match($route, $url, $params)){
+
+                /**
+                 * $params eh passado via parametro para a funcao callback
+                 * ex:
+                 * $router->add('/products/(\d+)', function($params){
+                 *    return "produtos ".$params[1]; // produtos 2121
+                 * });
+                 */
+                return $callback($params);
+            }
         }
         return "Página não encontrada";
     }
