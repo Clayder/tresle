@@ -11,12 +11,15 @@ class Router
     private $routes = [];
 
     /**
+     * @param string $typeAction
      * @param string $controller
      * @param mixed $callback funcao anonima
      * @return void
      */
-    public function add(string $controller, $callback)
+    public function add(string $typeAction, string $controller, $callback)
     {
+        $typeAction = strtolower($typeAction);
+
         /**
          * O caracter / eh especial, entao temos que transformar em \/
          */
@@ -27,7 +30,7 @@ class Router
          */
         $controller = '/^'. $controller .'$/';
 
-        $this->routes[$controller] = $callback;
+        $this->routes[$typeAction][$controller] = $callback;
     }
 
     /**
@@ -51,13 +54,25 @@ class Router
      */
     public function run()
     {
+        /**
+         * Recebe o verbo da requisicao
+         */
+        $typeAction = strtolower($_SERVER['REQUEST_METHOD']);
+        /**
+         * $this->routes[$typeAction] -> Percorre apenas o verbo da requisicao
+         */
+        $routes = $this->routes[$typeAction];
+        if(empty($routes)){
+            return "Página não encontrada.";
+        }
+
         $url = $this->getCurrentUrl();
 
         /**
          * $route    -> expressao regular
          * $callback -> funcao anonima
          */
-        foreach ($this->routes as $route => $callback){
+        foreach ($routes as $route => $callback){
 
             /**
              * Executa a expressao regular separando o controller dos parametros
