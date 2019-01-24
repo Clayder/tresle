@@ -12,7 +12,7 @@ class Router
 
     /**
      * @param string $controller
-     * @param $callback funcao anonima
+     * @param mixed $callback funcao anonima
      * @return void
      */
     public function add(string $controller, $callback)
@@ -47,7 +47,7 @@ class Router
     }
 
     /**
-     * @return void
+     * @return mixed
      */
     public function run()
     {
