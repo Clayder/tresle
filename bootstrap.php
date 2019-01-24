@@ -12,4 +12,8 @@ $router->add('GET', '/products/(\d+)', function($params){
     return "produtos ".$params[1];
 });
 
-echo $router->run();
+try{
+    echo $router->run();
+}catch (\Tresle\Exception\HttpException $e){
+    echo json_encode(['error' => $e->getMessage()]);
+}

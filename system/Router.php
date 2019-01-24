@@ -2,6 +2,7 @@
 
 namespace Tresle;
 
+use Tresle\Exception\HttpException;
 
 class Router
 {
@@ -63,7 +64,7 @@ class Router
          */
         $routes = $this->routes[$typeAction];
         if(empty($routes)){
-            return "Página não encontrada.";
+            throw new HttpException("Página não encontrada", 404);
         }
 
         $url = $this->getCurrentUrl();
@@ -97,6 +98,6 @@ class Router
                 return $callback($params);
             }
         }
-        return "Página não encontrada";
+        throw new HttpException("Página não encontrada", 404);
     }
 }
