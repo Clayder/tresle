@@ -31,11 +31,27 @@ class Router
     }
 
     /**
+     * @return string
+     */
+    public function getCurrentUrl()
+    {
+        $url = $_SERVER['PATH_INFO'] ?? '/';
+
+        /**
+         * Ignora a ultima /
+         */
+        if(strlen($url) > 1){
+            $url = rtrim($url, '/');
+        }
+        return $url;
+    }
+
+    /**
      * @return void
      */
     public function run()
     {
-        $url = $_SERVER['PATH_INFO'] ?? '/';
+        $url = $this->getCurrentUrl();
 
         /**
          * $route    -> expressao regular
@@ -45,7 +61,7 @@ class Router
 
             /**
              * Executa a expressao regular separando o controller dos parametros
-             * exemplo: /product/12
+             * exemplo: /product/2121
              * $params = array(2) {
              *               [0]=>
              *                  string(14) "/products/2121"
