@@ -4,7 +4,9 @@ require __DIR__."/vendor/autoload.php";
 
 $router = new \Tresle\Router();
 
-require __DIR__.'/config/routes.php';
+require __DIR__.'/config/containers.php';
+
+require __DIR__ . '/routes/web.php';
 
 try{
     echo $router->run();
