@@ -95,7 +95,10 @@ class Router
                  *    return "produtos ".$params[1]; // produtos 2121
                  * });
                  */
-                return $callback($params);
+                return [
+                    'action' => $callback,
+                    'params' => $params
+                ];
             }
         }
         throw new HttpException("Página não encontrada", 404);
