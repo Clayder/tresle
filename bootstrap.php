@@ -4,13 +4,7 @@ require __DIR__."/vendor/autoload.php";
 
 $router = new \Tresle\Router();
 
-$router->add('GET', '/', function(){
-    return "home";
-});
-
-$router->add('GET', '/products/(\d+)', function($params){
-    return "produtos ".$params[1];
-});
+require __DIR__.'/config/routes.php';
 
 try{
     echo $router->run();
