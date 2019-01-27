@@ -1,10 +1,5 @@
 <?php
 
-$router->add('GET', '/', function() use ($container){
-    $pdo = $container['db'];
-    return "home";
-});
+$router->add('GET', '/', '\App\Controllers\UsersController::index');
 
-$router->add('GET', '/products/(\d+)', function($params){
-    return "produtos ".$params[1];
-});
+$router->add('GET', '/users/(\d+)', '\App\Controllers\UsersController::get');

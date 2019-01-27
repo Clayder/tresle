@@ -9,7 +9,9 @@ require __DIR__.'/config/containers.php';
 require __DIR__ . '/routes/web.php';
 
 try{
-    echo $router->run();
+     $result = $router->run();
+     $response = new Tresle\Response();
+     $response($result['action'], $result['params'], $container);
 }catch (\Tresle\Exception\HttpException $e){
     echo json_encode(['error' => $e->getMessage()]);
 }
