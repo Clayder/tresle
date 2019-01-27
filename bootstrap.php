@@ -11,7 +11,8 @@ require __DIR__ . '/routes/web.php';
 try{
      $result = $router->run();
      $response = new Tresle\Response();
-     $response($result['action'], $result['params']);
+     var_dump($result['action']);
+     $response($result['action'], $result['params'], $container);
 }catch (\Tresle\Exception\HttpException $e){
     echo json_encode(['error' => $e->getMessage()]);
 }
