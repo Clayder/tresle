@@ -21,6 +21,6 @@ class UsersController extends Controller
     public function get(Request $request)
     {
        $user = new \App\Models\Users($this->container);
-       var_dump($user->get($request->attributes->get(1)));
+       return $user->get($request->attributes->get(1));
     }
 }

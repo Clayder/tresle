@@ -38,8 +38,11 @@ class Response
          * Executa o metodo do controller
          * e realiza a passagem de parametros
          */
-
-        echo call_user_func_array($controller, ["params" => $request]);
+        $response = call_user_func_array($controller, ["params" => $request]);
+        if(is_array($response)){
+            $response = json_encode($response);
+        }
+        echo $response;
     }
 
 
