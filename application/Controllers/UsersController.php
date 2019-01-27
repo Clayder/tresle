@@ -3,15 +3,24 @@
 namespace App\Controllers;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 class UsersController extends Controller
 {
-    public function index($t)
+    /**
+     * @param Request $request
+     */
+    public function index(Request $request)
     {
         echo "index";
     }
-    public function get($params)
+
+    /**
+     * @param Request $request
+     */
+    public function get(Request $request)
     {
        $user = new \App\Models\Users($this->container);
-       var_dump($user->get($params[1]));
+       var_dump($user->get($request->attributes->get(1)));
     }
 }
