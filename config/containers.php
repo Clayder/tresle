@@ -18,3 +18,7 @@ $container['db'] = function(){
 
     return $pdo;
 };
+
+$container['events'] = function(){
+    return new Zend\EventManager\EventManager();
+};

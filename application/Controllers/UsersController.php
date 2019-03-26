@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 
+use App\Models\Users;
 use Symfony\Component\HttpFoundation\Request;
 
 class UsersController extends Controller
@@ -12,6 +13,8 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
+        $user = new Users($this->container);
+        $user->create(['name'=> 'Erick']);
         echo "index";
     }
 
