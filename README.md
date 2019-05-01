@@ -1,5 +1,7 @@
 # Tresle
 
+**Obs:** Esse repositório foi descontinuado, estamos utilizando esse aqui [NOVO REPOSITÓRIO](https://github.com/treslebr/tresle)
+
 Tresle é um sistema de delivery, que está sendo desenvolvido utilizando arquitetura de componentes.
 O objetivo inicial desse projeto é estudar e colocar em prática os seguintes assuntos:
 
@@ -24,6 +26,7 @@ O projeto está dividido em 4 tipos de branch:
  2. **Develop:**   Branch utilizada para teste, vai receber merge de feature/*  e hotfix/*  .
  3. **feature/titulo :** Utilizada para o desenvolvimento de uma funcionalidade específica, cada funcionalidade vai possuir uma brach feature.
  4. **hotfix/titulo :**  Responsáveis pela realização de alguma correção, cada correção vai possuir uma branch hotfix.
+ 
  
 **Branches:** [https://github.com/Clayder/tresle/branches](https://github.com/Clayder/tresle/branches)
   
